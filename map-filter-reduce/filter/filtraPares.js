@@ -1,9 +1,18 @@
-function filtraPares(arr) {
-	if (!arr || !arr.length) return;
+function filtraPares(arr, callback) {
+    if (!arr || !arr.length) {
+        return callback(new Error('Array inválido'), null);
+    }
 
-	const filteredArr = arr.filter((item) => item % 2 === 0);
-
-	return filteredArr;
+    const filteredArr = arr.filter(item => item % 2 === 0);
+    return callback(null, filteredArr);
 }
 
-console.log(filtraPares([1, 2, 3, 4]));
+function resultado(err, result) {
+    if (err) {
+        console.error('Erro:', err.message);
+    } else {
+        console.log('Números pares:', result);
+    }
+}
+
+filtraPares([1, 2, 3, 4, 5, 6, 7, 8, 9], resultado);

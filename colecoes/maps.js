@@ -2,9 +2,8 @@ const getAdmins = (map) => {
 	let admins = [];
 
 	for ([key, value] of map) {
-		if (value === 'ADMIN') {
-			admins.push(key);
-		}
+		admins.push({key, value: value===true? 'Has ADMIN': 'No ADMIN'});
+		
 	}
 
 	return admins;
@@ -12,10 +11,11 @@ const getAdmins = (map) => {
 
 const userRoles = new Map();
 
-userRoles.set('Stephany', 'SUDO');
-userRoles.set('Luiz', 'ADMIN');
-userRoles.set('Elvira', 'ADMIN');
-userRoles.set('Carolina', 'USER');
-userRoles.set('Guilherme', 'USER');
+userRoles.set('Stephany', true);
+userRoles.set('Luiz', true);
+userRoles.set('Elvira', true);
+userRoles.set('Carolina', false);
+userRoles.set('Guilherme', false);
+userRoles.set('Robson', true);
 
 console.log(getAdmins(userRoles));
